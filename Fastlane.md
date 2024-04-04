@@ -66,15 +66,12 @@ platform :ios do
   end
 end
 ```
-이후 상황에 맞게 실행시키면 자동으로 올라가게 된다.
+버전 업데이트 문제가 생겨서 추가로 코드를 변경하게 됨    
 ```bash
-fastlane test
+fastlane add_plugin versioning  // fastlane 버전 관리 문제를 해결해주는 라이브러리
 ```
-```bash
-fastlane release
-```
-
-에러 상황을 여러번 겪고 나온 최종 Fastfile 코드     
+이 라이브러리를 사용하여 버전문제를 해결함
+최종 Fastfile 코드     
 ```bash
 default_platform(:ios)
 
@@ -114,6 +111,13 @@ platform :ios do
   end
 end
 ```
+```bash
+fastlane test
+```
+```bash
+fastlane release
+```
+
 
 ## 에러
 ### Could not find action, lane or variable 'api_key'. Check out the documentation for more details: https://docs.fastlane.tools/actions
