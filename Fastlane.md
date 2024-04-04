@@ -113,7 +113,8 @@ end
 
 ## 에러
 ### Could not find action, lane or variable 'api_key'. Check out the documentation for more details: https://docs.fastlane.tools/actions
-api_key의 값이 없어서 생긴 문제
+api_key의 값이 없어서 생긴 문제    
+https://appstoreconnect.apple.com/ 에서 통합탭 클릭후 팀키를 새로 생성하면 된다.
 ```bash
 lane :test do    // "fastlane test" 형식으로 커멘트 창에 실행시킬 명령어 명령어 입력시 밑의 내용을 바탕으로 코드를 실행
     increment_build_number( // 빌드번호를 자동으로 증가시키는 코드
@@ -136,7 +137,7 @@ Auth.json 파일 예시
   "in_house": false
 }
 ```
-**\n은 key에는 적혀있지 않으니 직접 넣어주어야한다**
+**\n은 key에는 적혀있지 않으니 직접 넣어주어야한다**    
 여기서 맞게 id값을 넣어주고 다운로드 받은 내용을 key에다가 넣어주면 된다.   
 <img width="1381" alt="스크린샷 2024-04-03 오후 6 24 54" src="https://github.com/three523/Doc/assets/71269216/de478ac7-8371-4cf9-8c46-fa0e1698678f">
 
