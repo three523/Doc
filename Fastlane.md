@@ -145,18 +145,6 @@ Auth.json 파일 예시
 ### ERROR: [ContentDelivery.Uploader] Asset validation failed (90186) Invalid Pre-Release Train. The train version '1.0' is closed for new build submissions
 앱의 버전이 기존에 올라가있는 버전과 같다는 의미    
 많은 방법을 사용해서 수정해보았는데    
-increment_version_number로 증가를 시켜보았는데 info파일에 값은 수정이 되지만 막상 get_version_number 를 사용해서 가지고와보면 바뀌지 않는 문제가 있었다.    
-검색을해보니 [공식문서](https://developer.apple.com/library/archive/qa/qa1827/_index.html)에 나온 방식대로
-current project version을 내 원래 버전으로 설정한뒤    
-Versioning System을 Apple Generic으로 변경   
-```bash
-agvtool new-marketing-version 2.0
-```
-```bash
-agvtool next-version -all
-```
-이렇게 해서 info.plist를 초기화 작업을 해주고     
-info.plist에     
-bundle Version 값을 $(CURRENT_PROJECT_VERSION)으로    
+increment_version_number로 증가를 시켜보았는데 info파일에 값은 수정이 되지만 막상 get_version_number 를 사용해서 가지고와보면 바뀌지 않는 문제가 있었다.      
 Bundle version string (short)의 값은 내 기본 버전으로 설정한뒤에 코드를 실행시키니 잘 실행되었다.    
 버전은 매번 올리는것은 좋지 못한듯 하여 버전 업데이트만 lane로 따로 빼놓았다.
