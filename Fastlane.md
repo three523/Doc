@@ -79,8 +79,12 @@ fastlane release
 default_platform(:ios)
 
 platform :ios do
-  lane :update_version do
-      increment_version_number(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch')
+  lane :update_version do |options|
+      if options[:version]
+        increment_version_number_in_plist(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch', version_number: options[:version], plist_build_setting_support: true)
+      else
+        increment_version_number_in_plist(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch', version_number: options[:version], plist_build_setting_support: true)
+      end
   end
 
   desc "Push TestFlight"
@@ -145,6 +149,17 @@ Auth.json 파일 예시
 ### ERROR: [ContentDelivery.Uploader] Asset validation failed (90186) Invalid Pre-Release Train. The train version '1.0' is closed for new build submissions
 앱의 버전이 기존에 올라가있는 버전과 같다는 의미    
 많은 방법을 사용해서 수정해보았는데    
-increment_version_number로 증가를 시켜보았는데 info파일에 값은 수정이 되지만 막상 get_version_number 를 사용해서 가지고와보면 바뀌지 않는 문제가 있었다.      
-Bundle version string (short)의 값은 내 기본 버전으로 설정한뒤에 코드를 실행시키니 잘 실행되었다.    
-버전은 매번 올리는것은 좋지 못한듯 하여 버전 업데이트만 lane로 따로 빼놓았다.
+increment_version_number로 증가를 시켜보았는데 info파일에 값은 수정이 되지만 막상 get_version_number 를 사용해서 가지고와보면 바뀌지 않는 문제가 있었다.    
+검색을해보니 [공식문서](https://developer.apple.com/library/archive/qa/qa1827/_index.html)에 나온대로도 해보았지만 해결이 되지 않아    
+[fastlane-plugin-versioning](https://github.com/SiarheiFedartsou/fastlane-plugin-versioning)이라는 라이브러리를 알게되어서 사용해보기로 하였다.    
+간단하게 increment_version_number_in_plist를 사용하면 관련된 모든사항이 변경되도록 구성이 되어있어 편하게 사용할 수 있었다.    
+만약 fastlane update_version version:"1.0.1" 처럼 version을 입력하면 특정한 버전으로 변경되고 아닐 경우 자동으로 증가하도록 구현하였다.
+```bash
+lane :update_version do |options|
+      if options[:version]
+        increment_version_number_in_plist(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch', version_number: options[:version], plist_build_setting_support: true)
+      else
+        increment_version_number_in_plist(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch', version_number: options[:version], plist_build_setting_support: true)
+      end
+  end
+```
