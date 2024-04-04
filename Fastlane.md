@@ -76,14 +76,6 @@ fastlane add_plugin versioning  // fastlane 버전 관리 문제를 해결해주
 default_platform(:ios)
 
 platform :ios do
-  lane :update_version do |options|
-      if options[:version]
-        increment_version_number_in_plist(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch', version_number: options[:version], plist_build_setting_support: true)
-      else
-        increment_version_number_in_plist(xcodeproj: "Memorize.xcodeproj", bump_type: 'patch', version_number: options[:version], plist_build_setting_support: true)
-      end
-  end
-
   desc "Push TestFlight"
   lane :test do
       build_number = latest_testflight_build_number(api_key_path: "fastlane/Auth.json")
@@ -150,7 +142,7 @@ Auth.json 파일 예시
 <img width="1381" alt="스크린샷 2024-04-03 오후 6 24 54" src="https://github.com/three523/Doc/assets/71269216/de478ac7-8371-4cf9-8c46-fa0e1698678f">
 
 
-### ERROR: [ContentDelivery.Uploader] Asset validation failed (90186) Invalid Pre-Release Train. The train version '1.0' is closed for new build submissions
+### ERROR: [ContentDelivery.Uploader] Asset validation failed (90186) Invalid Pre-Release Train. The train version '1.0' is closed for new build submissions 해결중
 앱의 버전이 기존에 올라가있는 버전과 같다는 의미    
 많은 방법을 사용해서 수정해보았는데    
 increment_version_number로 증가를 시켜보았는데 info파일에 값은 수정이 되지만 막상 get_version_number 를 사용해서 가지고와보면 바뀌지 않는 문제가 있었다.    
@@ -167,3 +159,6 @@ lane :update_version do |options|
       end
   end
 ```
+**이런 방법으로 해결할 경우 info.plist 파일의 내용이 사라져서 앱 실행 자체가 안됌**     
+**일단은 직접 MARKETING_VERSION 을 변경하는 방법으로 사용중**    
+
