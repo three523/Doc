@@ -66,6 +66,7 @@ platform :ios do
   end
 end
 ```
+MARKETING_VERSION 업데이트가 자동으로 되지않아 문제가 생김 방법을 찾아보는 중이나 아직 직접 바꾸는 방법 말곤 해결방법을 찾지 못함    
 
 최종 Fastfile 코드     
 ```bash
