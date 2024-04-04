@@ -126,6 +126,20 @@ lane :test do    // "fastlane test" 형식으로 커멘트 창에 실행시킬 �
     )
   end
 ```
+Auth.json 파일 예시
+```bash
+{
+  "key_id": "key_id 붙여넣기",
+  "issuer_id": "issuer_id 붙여넣기",
+  "key": "-----BEGIN PRIVATE KEY-----\n다운받은 키값\n-----END PRIVATE KEY-----",
+  "duration": 1200,
+  "in_house": false
+}
+```
+**\n은 key에는 적혀있지 않으니 직접 넣어주어야한다**
+여기서 맞게 id값을 넣어주고 다운로드 받은 내용을 key에다가 넣어주면 된다.   
+<img width="1381" alt="스크린샷 2024-04-03 오후 6 24 54" src="https://github.com/three523/Doc/assets/71269216/de478ac7-8371-4cf9-8c46-fa0e1698678f">
+
 
 ### ERROR: [ContentDelivery.Uploader] Asset validation failed (90186) Invalid Pre-Release Train. The train version '1.0' is closed for new build submissions
 앱의 버전이 기존에 올라가있는 버전과 같다는 의미    
