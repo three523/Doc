@@ -66,11 +66,7 @@ platform :ios do
   end
 end
 ```
-버전 업데이트 문제가 생겨서 추가로 코드를 변경하게 됨    
-```bash
-fastlane add_plugin versioning  // fastlane 버전 관리 문제를 해결해주는 라이브러리
-```
-이 라이브러리를 사용하여 버전문제를 해결함
+
 최종 Fastfile 코드     
 ```bash
 default_platform(:ios)
@@ -150,6 +146,9 @@ increment_version_number로 증가를 시켜보았는데 info파일에 값은 �
 [fastlane-plugin-versioning](https://github.com/SiarheiFedartsou/fastlane-plugin-versioning)이라는 라이브러리를 알게되어서 사용해보기로 하였다.    
 간단하게 increment_version_number_in_plist를 사용하면 관련된 모든사항이 변경되도록 구성이 되어있어 편하게 사용할 수 있었다.    
 만약 fastlane update_version version:"1.0.1" 처럼 version을 입력하면 특정한 버전으로 변경되고 아닐 경우 자동으로 증가하도록 구현하였다.
+```bash
+fastlane add_plugin versioning  // fastlane 버전 관리 문제를 해결해주는 라이브러리
+```
 ```bash
 lane :update_version do |options|
       if options[:version]
