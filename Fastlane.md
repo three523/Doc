@@ -157,6 +157,6 @@ agvtool next-version -all
 ```
 이렇게 해서 info.plist를 초기화 작업을 해주고     
 info.plist에     
-bundle Version 값을 $(CURRENT_PROJECT_VERSION)으로 
+bundle Version 값을 $(CURRENT_PROJECT_VERSION)으로    
 Bundle version string (short)의 값은 내 기본 버전으로 설정한뒤에 코드를 실행시키니 잘 실행되었다.    
 버전은 매번 올리는것은 좋지 못한듯 하여 버전 업데이트만 lane로 따로 빼놓았다.
