@@ -162,3 +162,22 @@ lane :update_version do |options|
 **이런 방법으로 해결할 경우 info.plist 파일의 내용이 사라져서 앱 실행 자체가 안됌**     
 **일단은 직접 MARKETING_VERSION 을 변경하는 방법으로 사용중**    
 
+### Precheck cannot check In-app purchases with the App Store Connect API Key (yet). Exclude In-app purchases from precheck, disable the precheck step in your build step, or use Apple ID login
+fastlane에는 precheck 라는 기능이 존재한다.    
+가장 기본적인 리젝이 될만한 사항들을 체크해주는 기능이다.    
+그중 인앱결제 기능이 존재하지 않는데 인앱결제를 확인하려다 보니 생긴 에러이다.    
+Fastfile에서 upload_to_app_store안에 인앱결제를 안한다는것을 체크해주면 된다.     
+```bash
+precheck_include_in_app_purchases: false
+```
+
+### Export compliance is required to submit
+수출규정 암호화를 하는지 묻는 것
+info.plist에서 App Uses Non-Exempt Encryption 를 YES 나 NO로 설정해주면 됨
+
+### Use of Advertising Identifier (IDFA) is required to submit
+광고에 관한 식별자을 작성하지 않은 경우 뜨는 에러     
+사용하지 않으니 일단 false로 설정
+```bash
+submission_information: { add_id_info_uses_idfa: false }
+```
